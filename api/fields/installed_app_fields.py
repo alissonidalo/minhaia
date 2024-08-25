@@ -5,6 +5,7 @@ from libs.helper import TimestampField
 app_fields = {
     'id': fields.String,
     'name': fields.String,
+    'description': fields.String,
     'mode': fields.String,
     'icon': fields.String,
     'icon_background': fields.String

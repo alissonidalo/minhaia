@@ -16,6 +16,7 @@ export const fetchInstalledAppList = () => {
   return get('/installed-apps')
 }
 
+
 export const installApp = (id: string) => {
   return post('/installed-apps', {
     body: {

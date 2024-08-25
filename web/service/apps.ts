@@ -41,8 +41,8 @@ export const importAppFromUrl: Fetcher<AppDetailResponse, { url: string; name?: 
   return post<AppDetailResponse>('apps/import/url', { body: { url, name, description, icon, icon_background } })
 }
 
-export const switchApp: Fetcher<{ new_app_id: string }, { appID: string; name: string; icon: string; icon_background: string }> = ({ appID, name, icon, icon_background }) => {
-  return post<{ new_app_id: string }>(`apps/${appID}/convert-to-workflow`, { body: { name, icon, icon_background } })
+export const switchApp: Fetcher<{ new_app_id: string }, { appID: string; name: string; icon: string; icon_background: string, description: string }> = ({ appID, name, icon, icon_background, description }) => {
+  return post<{ new_app_id: string }>(`apps/${appID}/convert-to-workflow`, { body: { name, icon, icon_background, description } })
 }
 
 export const deleteApp: Fetcher<CommonResponse, string> = (appID) => {

@@ -29,6 +29,17 @@ export type App = {
 export type InstalledApp = {
   app: AppBasicInfo
   id: string
+  description: string
+  copyright: string
+  privacy_policy: string | null
+  custom_disclaimer: string | null
+  category: AppCategory
+  position: number
+  is_listed: boolean
+  install_count: number
+  installed: boolean
+  editable: boolean
+  is_agent: boolean
   uninstallable: boolean
   is_pinned: boolean
 }

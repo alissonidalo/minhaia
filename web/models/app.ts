@@ -1,7 +1,7 @@
 import type { LangFuseConfig, LangSmithConfig, TracingProvider } from '@/app/(commonLayout)/app/(appDetailLayout)/[appId]/overview/tracing/type'
 import type { App, AppTemplate, SiteConfig } from '@/types/app'
 
-/* export type App = {
+ export type App = {
   id: string
   name: string
   decription: string
@@ -56,7 +56,7 @@ export type SiteConfig = {
   theme: string
   customize_token_strategy: 'must' | 'allow' | 'not_allow'
   prompt_public: boolean
-} */
+}
 
 export type AppListResponse = {
   data: App[]
