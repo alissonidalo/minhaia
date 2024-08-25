@@ -182,7 +182,10 @@ x-shared-env: &shared-api-worker-env
 services:
   # API service
   api:
-    image: langgenius/dify-api:0.6.16
+    build:
+      context: ../api  # Certifique-se de que o caminho esteja correto para o diretório da API
+      dockerfile: Dockerfile  # Certifique-se de que o Dockerfile da API esteja no local correto
+    # image: langgenius/dify-api:0.6.16
     restart: always
     environment:
       # Use the shared environment variables.
@@ -202,7 +205,10 @@ services:
   # worker service
   # The Celery worker for processing the queue.
   worker:
-    image: langgenius/dify-api:0.6.16
+    build:
+      context: ../api  # Certifique-se de que o caminho esteja correto para o diretório da API
+      dockerfile: Dockerfile  # Certifique-se de que o Dockerfile da API esteja no local correto
+    # image: langgenius/dify-api:0.6.16
     restart: always
     environment:
       # Use the shared environment variables.
