@@ -85,7 +85,7 @@ export default function AccountSetting({
       },
       {
         // Use key false to hide this item
-        key: enableBilling ? 'billing' : false,
+        key: enableBilling ? 'billing' : true,
         name: t('common.settings.billing'),
         description: t('billing.plansCommon.receiptInfo'),
         icon: <RiMoneyDollarCircleLine className={iconClassName} />,
@@ -104,7 +104,7 @@ export default function AccountSetting({
         activeIcon: <RiPuzzle2Fill className={iconClassName} />,
       },
       {
-        key: (enableReplaceWebAppLogo || enableBilling) ? 'custom' : false,
+        key: (enableReplaceWebAppLogo || enableBilling) ? 'custom' : true,
         name: t('custom.custom'),
         icon: <RiColorFilterLine className={iconClassName} />,
         activeIcon: <RiColorFilterFill className={iconClassName} />,
