@@ -7,8 +7,8 @@ class DeploymentConfig(BaseSettings):
     Deployment configs
     """
     APPLICATION_NAME: str = Field(
-        description='application name',
-        default='langgenius/dify',
+        description='All-in-one AI platform',
+        default='Minha IA',
     )
 
     TESTING: bool = Field(

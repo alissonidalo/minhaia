@@ -16,7 +16,8 @@ ENV POETRY_VIRTUALENVS_CREATE=true
 FROM base AS packages
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends gcc g++ libc-dev libffi-dev libgmp-dev libmpfr-dev libmpc-dev
+    && apt-get install -y --no-install-recommends gcc g++ libc-dev libffi-dev libgmp-dev libmpfr-dev libmpc-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
 COPY pyproject.toml poetry.lock ./
@@ -35,17 +36,24 @@ ENV APP_WEB_URL=http://127.0.0.1:3000
 
 EXPOSE 5001
 
-# set timezone
+# Set timezone
 ENV TZ=UTC
 
 WORKDIR /app/api
 
+# Install necessary packages without version constraints and without changing sources.list
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends curl nodejs libgmp-dev libmpfr-dev libmpc-dev \
-    && echo "deb http://deb.debian.org/debian testing main" > /etc/apt/sources.list \
-    && apt-get update \
-    # For Security
-    && apt-get install -y --no-install-recommends zlib1g=1:1.3.dfsg+really1.3.1-1 expat=2.6.2-1 libldap-2.5-0=2.5.18+dfsg-2 perl=5.38.2-5 libsqlite3-0=3.46.0-1 \
+    && apt-get install -y --no-install-recommends \
+        curl \
+        nodejs \
+        libgmp-dev \
+        libmpfr-dev \
+        libmpc-dev \
+        zlib1g \
+        expat \
+        libldap-2.5-0 \
+        perl \
+        libsqlite3-0 \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
@@ -60,7 +68,6 @@ COPY . /app/api/
 # Copy entrypoint
 COPY docker/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-
 
 ARG COMMIT_SHA
 ENV COMMIT_SHA=${COMMIT_SHA}
